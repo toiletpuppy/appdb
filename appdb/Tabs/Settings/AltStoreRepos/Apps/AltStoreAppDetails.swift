@@ -108,7 +108,7 @@ class AltStoreAppDetails: LoadingTableView {
             setButtonTitle("Requesting...")
 
             func install(_ app: AltStoreApp, additionalOptions: [AdditionalInstallationParameters: Any] = [:]) {
-                API.customInstall(ipaUrl: app.downloadURL, type: .altstore, iconUrl: app.image, bundleId: app.bundleId, name: app.name,  additionalOptions: additionalOptions) { [weak self] error in
+                API.customInstall(ipaUrl: app.downloadURL, type: .altstore, iconUrl: app.image, bundleId: app.bundleId, name: app.name, additionalOptions: additionalOptions) { [weak self] error in
                     guard let self = self else { return }
 
                     if let error = error {

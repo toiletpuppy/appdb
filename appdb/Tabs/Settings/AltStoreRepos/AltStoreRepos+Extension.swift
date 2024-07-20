@@ -65,22 +65,22 @@ extension AltStoreRepos {
             textField.placeholder = "Repository URL".localized()
             textField.theme_keyboardAppearance = [.light, .dark, .dark]
             textField.keyboardType = .URL
-            //textField.addTarget(self, action: #selector(self.repoUrlTextfieldTextChanged(sender:)), for: .editingChanged)
+            // textField.addTarget(self, action: #selector(self.repoUrlTextfieldTextChanged(sender:)), for: .editingChanged)
             textField.clearButtonMode = .whileEditing
         }
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
 
         let addAction = UIAlertAction(title: "Add repo".localized(), style: .default, handler: { _ in
             guard let text = alertController.textFields?[0].text else { return }
-            API.addAltStoreRepo(url: text) { item in
+            API.addAltStoreRepo(url: text) { _ in
                 Messages.shared.showSuccess(message: "Repository was added successfully".localized(), context: .viewController(self))
                 self.loadRepos()
-            } fail: { error in
+            } fail: { _ in
                 Messages.shared.showError(message: "An error occurred while adding the new repository".localized(), context: .viewController(self))
             }
         })
         alertController.addAction(addAction)
-        //addAction.isEnabled = false
+        // addAction.isEnabled = false
 
         present(alertController, animated: true)
     }

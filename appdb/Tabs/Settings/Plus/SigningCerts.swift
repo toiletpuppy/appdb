@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 
 class SigningCerts: UIViewController {
-    
+
     var webView: WKWebView!
     var loadingIndicator: UIActivityIndicatorView!
     var navigatedCount: Int = 0
@@ -46,9 +46,9 @@ class SigningCerts: UIViewController {
             NSLayoutConstraint(item: webView!, attribute: .height, relatedBy: .equal, toItem: view, attribute: .height, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: webView!, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 1, constant: 0),
             NSLayoutConstraint(item: webView!, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0),
-            NSLayoutConstraint(item: webView!, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0),
+            NSLayoutConstraint(item: webView!, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
         ])
-        
+
         loadWebView()
     }
 
@@ -75,12 +75,12 @@ class SigningCerts: UIViewController {
 }
 
 extension SigningCerts: WKNavigationDelegate {
-    
+
     @available(iOS 14.5, *)
     func webView(_ webView: WKWebView, navigationAction: WKNavigationAction, didBecome download: WKDownload) {
         self.loadingIndicator.startAnimating()
     }
-    
+
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         self.loadingIndicator.stopAnimating()
         if navigatedCount > 0 {

@@ -227,7 +227,7 @@ extension Library {
     internal func handleRename(for file: LocalIPAFile, at indexPath: IndexPath) {
         let alert = UIAlertController(title: "Rename File".localized(), message: nil, preferredStyle: .alert, adaptive: true)
         alert.addTextField(configurationHandler: { textField in
-            //textField.addTarget(self, action: #selector(self.renameTextChanged), for: .editingChanged)
+            // textField.addTarget(self, action: #selector(self.renameTextChanged), for: .editingChanged)
             textField.placeholder = String(file.filename.dropLast(4))
             textField.text = String(file.filename.dropLast(4))
             textField.theme_keyboardAppearance = [.light, .dark, .dark]
@@ -243,7 +243,7 @@ extension Library {
         })
 
         alert.addAction(rename)
-        //rename.isEnabled = false
+        // rename.isEnabled = false
 
         DispatchQueue.main.async {
             self.present(alert, animated: true)

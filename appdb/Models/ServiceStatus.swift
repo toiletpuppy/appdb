@@ -23,10 +23,10 @@ struct ServiceStatus: Mappable {
         isOnline <- map["is_online"]
         dataInt <- map["data"]
         dataString <- map["data"]
-        if (dataInt != nil) {
+        if dataInt != nil {
             data = String(dataInt!)
         }
-        if (dataString != nil) {
+        if dataString != nil {
             data = dataString
         }
     }

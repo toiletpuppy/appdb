@@ -39,7 +39,7 @@ class EnterpriseCertChooser: UITableViewController {
         super.viewDidLoad()
 
         title = "Choose Enterprise Certificate".localized()
-        
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "info"), style: .plain, target: self, action: #selector(openSigningInfoBlogArticle))
 
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
@@ -88,7 +88,7 @@ class EnterpriseCertChooser: UITableViewController {
             self.tableView.reloadData()
         }
     }
-    
+
     @objc private func openSigningInfoBlogArticle() {
         UIApplication.shared.open(URL(string: Global.signingCertsBlogArticle)!)
     }
@@ -107,7 +107,7 @@ class EnterpriseCertChooser: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        
+
         if indexPath.section == 0 {
             let certificate = availableCertificates[indexPath.row]
             cell.textLabel?.text = certificate.name
@@ -125,7 +125,7 @@ class EnterpriseCertChooser: UITableViewController {
         cell.selectedBackgroundView = bgColorView
         return cell
     }
-    
+
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return section == 0 ? "Public Free Enterprise Certificates (frequent revokes and device blacklists)".localized() : "1-Year-Guaranteed signing certificates".localized()
     }
@@ -142,7 +142,7 @@ class EnterpriseCertChooser: UITableViewController {
             present(SigningCerts(), animated: true)
         }
     }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return indexPath.section == 0 ? 75 : 85
     }

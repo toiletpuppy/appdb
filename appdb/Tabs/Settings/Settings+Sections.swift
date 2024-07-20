@@ -118,7 +118,7 @@ extension Settings {
                 API.setConfiguration(params: [.askForOptions: newValue ? "yes" : "no"], success: {}, fail: { _ in })
             }, cellClass: SimpleStaticCell.self)
         ]
-        
+
         if Preferences.isPlus {
             deviceConfigRows.append( StaticRow(text: "IPA Cache".localized(), selection: { [unowned self] _ in
                 self.push(IPACache())
@@ -127,7 +127,7 @@ extension Settings {
         deviceConfigRows.append(StaticRow(text: "Advanced Options".localized(), selection: { [unowned self] _ in
             self.push(AdvancedOptions())
         }, accessory: .disclosureIndicator, cellClass: SimpleStaticCell.self))
-        
+
         return themeSection + [
 
             StaticSection(header: .title("General".localized()), rows: [

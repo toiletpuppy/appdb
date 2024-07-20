@@ -106,7 +106,7 @@ class AdvancedOptions: TableViewController {
 
         // Show view controller
         if Global.isIpad {
-            if (viewController is SigningTypeChooser), #available(iOS 13.0, *) {
+            if viewController is SigningTypeChooser, #available(iOS 13.0, *) {
                 self.navigationController?.pushViewController(viewController, animated: true)
             } else {
                 let nav = DismissableModalNavController(rootViewController: viewController)
@@ -195,7 +195,7 @@ extension AdvancedOptions {
     func presentEmailInputAlertController(title: String, message: String, placeholder: String, actionTitle: String, action: @escaping (_ text: String) -> Void) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert, adaptive: true)
         alert.addTextField(configurationHandler: { textField in
-            //textField.addTarget(self, action: #selector(self.voucherTextChanged), for: .editingChanged)
+            // textField.addTarget(self, action: #selector(self.voucherTextChanged), for: .editingChanged)
             textField.placeholder = placeholder
             textField.keyboardType = .emailAddress
             textField.theme_keyboardAppearance = [.light, .dark, .dark]
@@ -210,7 +210,7 @@ extension AdvancedOptions {
         })
 
         alert.addAction(load)
-        //load.isEnabled = false
+        // load.isEnabled = false
 
         DispatchQueue.main.async {
             self.present(alert, animated: true)

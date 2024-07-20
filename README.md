@@ -59,8 +59,7 @@ You can download the latest .ipa from the [releases page](https://github.com/n3d
 Alernatively, you can build the project manually. Run the following commands:
 ```
 $ git clone https://github.com/n3d1117/appdb.git
-$ cd appdb/
-$ open appdb.xcodeproj
+$ xed appdb
 ```
 
 ## License

@@ -113,7 +113,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
             if addedRowTypes.contains(where: { _addedRowType in
                 return _addedRowType == installationOption.identifier.rawValue
             }) {
-                continue;
+                continue
             }
             addedRowTypes.append(installationOption.identifier.rawValue)
             switch installationOption.identifier {
@@ -168,7 +168,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
                 break
             case .injectDylibs:
                 /*"Inject dylibs, frameworks or debs?".localized()*/
-                rows.append(StaticRow(text: installationOption.question, selection: { row in
+                rows.append(StaticRow(text: installationOption.question, selection: { _ in
                     self.askForDylibSelection(dylibOptions: installationOption.chooseFrom)
                 }, cellClass: SimpleStaticDylibsSelectionCell.self, context: ["selectedDylibs": selectedDylibs]))
                 break
@@ -202,7 +202,7 @@ class AdditionalInstallOptionsViewController: TableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Install".localized(), style: .done, target: self, action: #selector(proceedWithInstall))
         navigationItem.rightBarButtonItem?.isEnabled = false
 
-        //newId = placeholder
+        // newId = placeholder
         dataSource.sections = sections
 
         loadInstallationOptions()

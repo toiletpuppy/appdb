@@ -532,10 +532,6 @@ final class ContactDevStaticCell: SimpleStaticCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    override func configure(row: StaticRow) {
-        super.configure(row: row)
-    }
 }
 
 final class ClearCacheStaticCell: SimpleStaticCell {
@@ -546,10 +542,6 @@ final class ClearCacheStaticCell: SimpleStaticCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    override func configure(row: StaticRow) {
-        super.configure(row: row)
-    }
 }
 
 final class ClearIdentityStaticCell: SimpleStaticButtonCell {
@@ -559,9 +551,5 @@ final class ClearIdentityStaticCell: SimpleStaticButtonCell {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    override func configure(row: StaticRow) {
-        super.configure(row: row)
     }
 }

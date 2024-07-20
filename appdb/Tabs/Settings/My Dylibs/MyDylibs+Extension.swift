@@ -94,7 +94,7 @@ extension MyDylibs {
             textField.placeholder = "Dylib URL".localized()
             textField.theme_keyboardAppearance = [.light, .dark, .dark]
             textField.keyboardType = .URL
-            //textField.addTarget(self, action: #selector(self.repoUrlTextfieldTextChanged(sender:)), for: .editingChanged)
+            // textField.addTarget(self, action: #selector(self.repoUrlTextfieldTextChanged(sender:)), for: .editingChanged)
             textField.clearButtonMode = .whileEditing
         }
         alertController.addAction(UIAlertAction(title: "Cancel".localized(), style: .cancel))
@@ -104,12 +104,12 @@ extension MyDylibs {
             API.addDylib(url: text) {
                 Messages.shared.showSuccess(message: "Dylib was added successfully".localized(), context: .viewController(self))
                 self.loadDylibs()
-            } fail: { error in
+            } fail: { _ in
                 Messages.shared.showError(message: "An error occurred while adding the new dylib".localized(), context: .viewController(self))
             }
         })
         alertController.addAction(addAction)
-        //addAction.isEnabled = false
+        // addAction.isEnabled = false
 
         present(alertController, animated: true)
     }

@@ -93,7 +93,7 @@ class InstallOptionsDylibSelectViewController: TableViewController {
         let rows = dylibOptions.map { dylibOption -> StaticRow in
             let selected = selectedDylibs.contains(dylibOption)
             currentIndex += 1
-            return StaticRow(text: dylibOption, selection: { row in
+            return StaticRow(text: dylibOption, selection: { _ in
                 if selected {
                     self.selectedDylibs.removeAll { option in
                         option == dylibOption
@@ -134,7 +134,7 @@ class InstallOptionsDylibSelectViewController: TableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.submitSelection))
         navigationItem.rightBarButtonItem?.isEnabled = true
 
-        //newId = placeholder
+        // newId = placeholder
         dataSource.sections = sections
     }
 

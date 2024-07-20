@@ -285,7 +285,7 @@ class DetailsHeader: DetailsCell {
             }
         }
 
-        if let stars = stars, (type == .ios || type == .books) {
+        if let stars = stars, type == .ios || type == .books {
             constrain(stars, seller) { stars, seller in
                 stars.leading ~== seller.leading
                 stars.trailing ~<= stars.superview!.trailing ~- Global.Size.margin.value

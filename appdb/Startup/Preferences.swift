@@ -65,7 +65,7 @@ enum Preferences {
     static var email: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.email.rawValue) ?? ""
     }
-    
+
     static var udid: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.udid.rawValue) ?? ""
     }
@@ -93,7 +93,7 @@ enum Preferences {
     static var plusProvider: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.plusProvider.rawValue) ?? ""
     }
-    
+
     static var plusSupportUri: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.plusSupportUri.rawValue) ?? ""
     }
@@ -117,8 +117,7 @@ enum Preferences {
     static var linkToken: String {
         KeychainWrapper.standard.string(forKey: SecureKeys.token.rawValue) ?? ""
     }
-    
-    
+
     static var p12ValidationResult: Bool {
         KeychainWrapper.standard.bool(forKey: SecureKeys.p12ValidationResult.rawValue) ?? false
     }

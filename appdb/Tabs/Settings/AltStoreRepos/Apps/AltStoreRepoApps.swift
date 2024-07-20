@@ -167,7 +167,7 @@ extension AltStoreRepoApps: UISearchResultsUpdating {
 
     func filterContentForSearchText(_ searchText: String) {
         query = searchText
-        if (query.isEmpty) {
+        if query.isEmpty {
             self.filteredApps = apps
         } else {
             filteredApps = apps.filter({( item: AltStoreApp) -> Bool in

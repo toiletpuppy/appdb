@@ -136,7 +136,7 @@ class Settings: TableViewController {
 
         // Show view controller
         if Global.isIpad {
-            if (viewController is ThemeChooser || viewController is LanguageChooser || viewController is AdvancedOptions),
+            if viewController is ThemeChooser || viewController is LanguageChooser || viewController is AdvancedOptions,
                #available(iOS 13.0, *) {
                 self.navigationController?.pushViewController(viewController, animated: true)
             } else {

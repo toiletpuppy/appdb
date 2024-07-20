@@ -131,7 +131,7 @@ class PlusPurchaseCell: UITableViewCell {
     func setGradient() {
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor(rgba: "#404cff").cgColor, UIColor(rgba: "#1c3372").cgColor]
-        gradient.locations = [0.0 , 1.0]
+        gradient.locations = [0.0, 1.0]
         gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
         gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
         gradient.frame = layer.frame

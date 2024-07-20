@@ -86,7 +86,7 @@ class IPACache: LoadingTableView {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SimpleStaticCell, let status = status {
-            if (indexPath.section == 0) {
+            if indexPath.section == 0 {
                 cell.textLabel?.text = "Cached IPAs".localized()
                 cell.detailTextLabel?.text = "\(status.ipas.count)"
                 cell.textLabel?.theme_textColor = Color.title
