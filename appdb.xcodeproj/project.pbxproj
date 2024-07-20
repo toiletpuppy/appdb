@@ -197,7 +197,7 @@
 		81521EAE25F672600064CA84 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81521EAD25F672600064CA84 /* SwiftUI.framework */; };
 		81521EB125F672600064CA84 /* Widgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81521EB025F672600064CA84 /* Widgets.swift */; };
 		81521EB425F672620064CA84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81521EB325F672620064CA84 /* Assets.xcassets */; };
-		81521EBA25F672620064CA84 /* WidgetsExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 81521EAA25F672600064CA84 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		81521EBA25F672620064CA84 /* WidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 81521EAA25F672600064CA84 /* WidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		815234D22278A6BF00B1AE65 /* SHA1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815234D12278A6BF00B1AE65 /* SHA1.swift */; };
 		815234D52278C10A00B1AE65 /* BackgroundTaskUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815234D42278C10A00B1AE65 /* BackgroundTaskUtil.swift */; };
 		8155094A22748F0E00509B20 /* LibrarySectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8155094922748F0E00509B20 /* LibrarySectionHeaderView.swift */; };
@@ -302,6 +302,7 @@
 		81BE06721E6CB6DE00AD9827 /* Details+SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */; };
 		81C274D8229FFA57000D8BEB /* Credits+Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C274D7229FFA57000D8BEB /* Credits+Views.swift */; };
 		81C82B7B22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C82B7A22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift */; };
+		81C8B2522C4BF68C00516814 /* OfficialApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C8B2512C4BF68C00516814 /* OfficialApp.swift */; };
 		81D3F72B2163E1DA001EC9F2 /* Item+Properties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D3F72A2163E1DA001EC9F2 /* Item+Properties.swift */; };
 		81D661761E5A0B6C00BB6461 /* Details+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D661751E5A0B6C00BB6461 /* Details+Extension.swift */; };
 		81DAB7DF2298895C00729424 /* IgnoredApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DAB7DE2298895C00729424 /* IgnoredApp.swift */; };
@@ -329,7 +330,6 @@
 		81EC00791DAD8B5A009EEFFA /* Copyright.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC00781DAD8B5A009EEFFA /* Copyright.swift */; };
 		81EC007B1DAD92A2009EEFFA /* Featured+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EC007A1DAD92A2009EEFFA /* Featured+Extension.swift */; };
 		81ED9A61226CB86100F45B75 /* ObserveQueuedApps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ED9A60226CB86100F45B75 /* ObserveQueuedApps.swift */; };
-		81F00E2B2785B8DF0071B16E /* SigningTypeChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F00E2A2785B8DF0071B16E /* SigningTypeChooser.swift */; };
 		81F055E92298144400E76874 /* Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F055E62298144400E76874 /* Defaults.swift */; };
 		81F055EA2298144400E76874 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F055E72298144400E76874 /* Observation.swift */; };
 		81F055ED2298147200E76874 /* KeychainItemAccessibility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F055EB2298147200E76874 /* KeychainItemAccessibility.swift */; };
@@ -371,15 +371,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		81521EBB25F672620064CA84 /* Embed App Extensions */ = {
+		81521EBB25F672620064CA84 /* Embed Foundation Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				81521EBA25F672620064CA84 /* WidgetsExtension.appex in Embed App Extensions */,
+				81521EBA25F672620064CA84 /* WidgetsExtension.appex in Embed Foundation Extensions */,
 			);
-			name = "Embed App Extensions";
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -672,6 +672,7 @@
 		81BE06711E6CB6DE00AD9827 /* Details+SegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Details+SegmentControl.swift"; sourceTree = "<group>"; };
 		81C274D7229FFA57000D8BEB /* Credits+Views.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Credits+Views.swift"; sourceTree = "<group>"; };
 		81C82B7A22C3DBC1008BB076 /* AskBundleBeforeUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskBundleBeforeUploadViewController.swift; sourceTree = "<group>"; };
+		81C8B2512C4BF68C00516814 /* OfficialApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficialApp.swift; sourceTree = "<group>"; };
 		81D3F72A2163E1DA001EC9F2 /* Item+Properties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Item+Properties.swift"; sourceTree = "<group>"; };
 		81D661751E5A0B6C00BB6461 /* Details+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = "Details+Extension.swift"; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		81D873332365BAD800F7240E /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1767,6 +1768,7 @@
 				811BEE232151538600F1F56A /* App.swift */,
 				811BEE272151538600F1F56A /* Book.swift */,
 				811BEE242151538600F1F56A /* CydiaApp.swift */,
+				81C8B2512C4BF68C00516814 /* OfficialApp.swift */,
 				811BEE202151538600F1F56A /* DeviceStatusItem.swift */,
 				81DAB7DE2298895C00729424 /* IgnoredApp.swift */,
 				81D3F72A2163E1DA001EC9F2 /* Item+Properties.swift */,
@@ -2053,7 +2055,7 @@
 				81A1D960229955C000C18CBC /* Run Script (swiftlint) */,
 				81A9DBB4214D36A000AB1A8C /* Resources */,
 				81CD0A9325F27DF0001C9EEA /* Frameworks */,
-				81521EBB25F672620064CA84 /* Embed App Extensions */,
+				81521EBB25F672620064CA84 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
@@ -2087,8 +2089,9 @@
 		8167A6071DAC246000F96AC2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 1240;
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1540;
 				ORGANIZATIONNAME = ned;
 				TargetAttributes = {
 					81521EA925F672600064CA84 = {
@@ -2375,7 +2378,6 @@
 				81485A77216617980004184F /* Search+Extension.swift in Sources */,
 				8126201C215444A400B06F88 /* Style.swift in Sources */,
 				813F00D52A7BFE52008DCA2E /* Expression.swift in Sources */,
-				81F00E2B2785B8DF0071B16E /* SigningTypeChooser.swift in Sources */,
 				81DEB2A91E7DD03100A94B26 /* Details+DownloadCell.swift in Sources */,
 				815016952312DAAE00E06E1E /* WishApp.swift in Sources */,
 				813F018E2A7C02C2008DCA2E /* AltStoreRepoApps.swift in Sources */,
@@ -2486,6 +2488,7 @@
 				813F00F72A7BFE71008DCA2E /* ButtonCell.swift in Sources */,
 				813F012B2A7BFE9E008DCA2E /* ThemeImagePicker.swift in Sources */,
 				817FF9EF1E59CCE60056960F /* Details.swift in Sources */,
+				81C8B2522C4BF68C00516814 /* OfficialApp.swift in Sources */,
 				816010CF1F8FEFF5003BA61E /* PortraitScreenshotSearchCell.swift in Sources */,
 				813F012C2A7BFE9E008DCA2E /* ThemeManager+Plist.swift in Sources */,
 				813F00E82A7BFE52008DCA2E /* LayoutSupport.swift in Sources */,
@@ -2806,7 +2809,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
-					"$(PROJECT_DIR)/Carthage/Build",
 					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";
@@ -2845,7 +2847,6 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/appdb",
-					"$(PROJECT_DIR)/Carthage/Build",
 					"$(PROJECT_DIR)",
 				);
 				HEADER_SEARCH_PATHS = "$(SDKROOT)/usr/include/libxml2";

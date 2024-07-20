@@ -17,6 +17,7 @@ extension Item {
         if let app = self as? App { return app.id.description }
         if let cydiaApp = self as? CydiaApp { return cydiaApp.id.description }
         if let book = self as? Book { return book.id.description }
+        if let officialApp = self as? OfficialApp { return officialApp.id.description }
         return ""
     }
 
@@ -24,6 +25,7 @@ extension Item {
         if let app = self as? App { return app.name.decoded }
         if let cydiaApp = self as? CydiaApp { return cydiaApp.name.decoded }
         if let book = self as? Book { return book.name.decoded }
+        if let officialApp = self as? OfficialApp { return officialApp.name.decoded }
         return ""
     }
 
@@ -130,6 +132,7 @@ extension Item {
         if let app = self as? App { return app.image }
         if let cydiaApp = self as? CydiaApp { return cydiaApp.image }
         if let book = self as? Book { return book.image }
+        if let officialApp = self as? OfficialApp { return officialApp.icon }
         return ""
     }
 

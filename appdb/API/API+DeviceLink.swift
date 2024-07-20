@@ -39,7 +39,7 @@ extension API {
                             fail()
                         })
                     }
-                case .failure(let error):
+                case .failure:
                     fail()
                 }
             }

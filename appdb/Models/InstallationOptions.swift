@@ -19,9 +19,7 @@ enum InstallationOptionIdentifier: String {
 }
 
 enum InstallationOptionType: String {
-    case string = "string"
-    case boolean = "boolean"
-    case multiple = "multiple"
+    case string, boolean, multiple
 }
 
 struct InstallationOption: Mappable {

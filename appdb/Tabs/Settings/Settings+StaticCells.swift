@@ -298,7 +298,7 @@ final class SimpleStaticPLUSStatusCell: UITableViewCell, Cell {
 
             expiration.top ~== dummy.bottom ~+ 2
             expiration.trailing ~== active.trailing
-        }
+       }
     }
 
     required init?(coder aDecoder: NSCoder) {
