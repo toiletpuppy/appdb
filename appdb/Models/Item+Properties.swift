@@ -17,7 +17,26 @@ extension Item {
         if let app = self as? App { return app.id.description }
         if let cydiaApp = self as? CydiaApp { return cydiaApp.id.description }
         if let book = self as? Book { return book.id.description }
+        if let officialApp = self as? OfficialApp { return officialApp.universalIdentifier }
+        if let userApp = self as? UserApp { return userApp.universalIdentifier }
+        if let repoApp = self as? RepoApp { return repoApp.universalIdentifier }
+        return ""
+    }
+
+    var itemType: ItemType {
+        if self is App { return .ios }
+        if self is CydiaApp { return .cydia }
+        if self is Book { return .books }
+        if self is OfficialApp { return .official }
+        if self is UserApp { return .user }
+        if self is RepoApp { return .repo }
+        return .__deprecated
+    }
+
+    var itemUniversalIdentifier: String {
         if let officialApp = self as? OfficialApp { return officialApp.id.description }
+        if let userApp = self as? UserApp { return userApp.id.description }
+        if let repoApp = self as? RepoApp { return repoApp.id.description }
         return ""
     }
 
@@ -26,12 +45,17 @@ extension Item {
         if let cydiaApp = self as? CydiaApp { return cydiaApp.name.decoded }
         if let book = self as? Book { return book.name.decoded }
         if let officialApp = self as? OfficialApp { return officialApp.name.decoded }
+        if let userApp = self as? UserApp { return userApp.name.decoded }
+        if let repoApp = self as? RepoApp { return repoApp.name.decoded }
         return ""
     }
 
     var itemVersion: String {
         if let app = self as? App { return app.version }
         if let cydiaApp = self as? CydiaApp { return cydiaApp.version }
+        if let officialApp = self as? OfficialApp { return officialApp.version }
+        if let userApp = self as? UserApp { return userApp.version }
+        if let repoApp = self as? RepoApp { return repoApp.version }
         return ""
     }
 
@@ -81,6 +105,9 @@ extension Item {
         if let app = self as? App { return app.description_ }
         if let cydiaApp = self as? CydiaApp { return cydiaApp.description_ }
         if let book = self as? Book { return book.description_ }
+        if let officialApp = self as? OfficialApp { return officialApp.description_ }
+        if let userApp = self as? UserApp { return userApp.description_ }
+        if let repoApp = self as? RepoApp { return repoApp.description_ }
         return ""
     }
 
@@ -125,6 +152,9 @@ extension Item {
         if let app = self as? App { return app.seller }
         if let cydiaApp = self as? CydiaApp { return cydiaApp.developer }
         if let book = self as? Book { return book.author }
+        if let officialApp = self as? OfficialApp { return officialApp.developer }
+        if let userApp = self as? UserApp { return userApp.developer }
+        if let repoApp = self as? RepoApp { return repoApp.developer }
         return ""
     }
 

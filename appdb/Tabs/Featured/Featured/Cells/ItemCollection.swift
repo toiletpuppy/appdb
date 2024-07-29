@@ -53,6 +53,36 @@ extension ItemCollection: UICollectionViewDelegate, UICollectionViewDataSource {
             return cell
         }
 
+        if let app = item as? OfficialApp {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "app", for: indexPath) as? FeaturedApp else { return UICollectionViewCell() }
+            cell.title.text = app.itemName.decoded
+            cell.category.text = app.itemSeller.decoded
+            if let url = URL(string: app.icon) {
+                cell.icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: Global.Size.itemWidth.value), imageTransition: .crossDissolve(0.2))
+            }
+            return cell
+        }
+
+        if let app = item as? UserApp {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "app", for: indexPath) as? FeaturedApp else { return UICollectionViewCell() }
+            cell.title.text = app.itemName.decoded
+            cell.category.text = app.itemSeller.decoded
+            if let url = URL(string: app.icon) {
+                cell.icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: Global.Size.itemWidth.value), imageTransition: .crossDissolve(0.2))
+            }
+            return cell
+        }
+
+        if let app = item as? RepoApp {
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "app", for: indexPath) as? FeaturedApp else { return UICollectionViewCell() }
+            cell.title.text = app.itemName.decoded
+            cell.category.text = app.itemSeller.decoded
+            if let url = URL(string: app.icon) {
+                cell.icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: Global.Size.itemWidth.value), imageTransition: .crossDissolve(0.2))
+            }
+            return cell
+        }
+
         return UICollectionViewCell()
     }
 
@@ -212,13 +242,18 @@ class ItemCollection: FeaturedCell {
                 case .iosPaid: getItems(type: App.self, order: .month, price: .paid)
                 case .iosPopular: getItems(type: App.self, order: .week, price: .free)
                 case .books: getItems(type: Book.self, order: .month)
+
+                case .official: getItems(type: OfficialApp.self)
+                case .user: getItems(type: UserApp.self)
+                case .repo: getItems(type: RepoApp.self)
+
                 default: break
                 }
             }
         }
     }
 
-    func getItems<T>(type: T.Type, order: Order, price: Price = .all, genre: String = "0") where T: Item {
+    func getItems<T>(type: T.Type, order: Order = .all, price: Price = .all, genre: String = "0") where T: Item {
         self.response.success = false
         self.response.errorDescription = ""
         API.search(type: type, order: order, price: price, genre: genre, success: { [weak self] array in

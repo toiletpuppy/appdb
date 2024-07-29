@@ -24,6 +24,9 @@ extension Details {
         if content is App { return .ios }
         if content is CydiaApp { return .cydia }
         if content is Book { return .books }
+        if content is OfficialApp { return .official }
+        if content is RepoApp { return .repo }
+        if content is UserApp { return .user }
         return .ios
     }
 
@@ -72,7 +75,16 @@ extension Details {
     }
 
     // Get content dynamically
-    func getContent<T>(type: T.Type, trackid: String, success: @escaping (_ item: T) -> Void) where T: Item {
+    func getContent<T>(type: T.Type, universalIdentifier: String, success: @escaping (_ item: T) -> Void) where T: Item {
+        API.searchByUniversalIdentifier(type: type, universalIdentifier: universalIdentifier, success: { item in
+            success(item)
+        }, fail: { [weak self] error in
+            guard let self else { return }
+            self.showErrorMessage(text: "Cannot connect".localized(), secondaryText: error)
+        })
+    }
+
+    func __getContentDeprecated<T>(type: T.Type, trackid: String, success: @escaping (_ item: T) -> Void) where T: Item {
         API.search(type: type, trackid: trackid, success: { [weak self] items in
             guard let self = self else { return }
             if let item = items.first { success(item) } else { self.showErrorMessage(text: "Not found".localized(), secondaryText: "Couldn't find content with id %@ in our database".localizedFormat(trackid)) }
@@ -84,21 +96,44 @@ extension Details {
     func fetchInfo(type: ItemType, trackid: String) {
         switch type {
         case .ios:
-            self.getContent(type: App.self, trackid: trackid, success: { item in
+            self.__getContentDeprecated(type: App.self, trackid: trackid, success: { item in
                 self.content = item
                 self.initializeCells()
                 self.state = .done
                 self.getLinks()
             })
         case .cydia:
-            self.getContent(type: CydiaApp.self, trackid: trackid, success: { item in
+            self.__getContentDeprecated(type: CydiaApp.self, trackid: trackid, success: { item in
                 self.content = item
                 self.initializeCells()
                 self.state = .done
                 self.getLinks()
             })
         case .books:
-            self.getContent(type: Book.self, trackid: trackid, success: { item in
+            self.__getContentDeprecated(type: Book.self, trackid: trackid, success: { item in
+                self.content = item
+                self.initializeCells()
+                self.state = .done
+                self.getLinks()
+            })
+        case .official:
+            self.getContent(type: OfficialApp.self, universalIdentifier: trackid, success: { item in
+                self.content = item
+                self.initializeCells()
+                self.state = .done
+                self.getLinks()
+            })
+
+        case .user:
+            self.getContent(type: UserApp.self, universalIdentifier: trackid, success: { item in
+                self.content = item
+                self.initializeCells()
+                self.state = .done
+                self.getLinks()
+            })
+
+        case .repo:
+            self.getContent(type: RepoApp.self, universalIdentifier: trackid, success: { item in
                 self.content = item
                 self.initializeCells()
                 self.state = .done
@@ -114,13 +149,15 @@ extension Details {
         header = [DetailsHeader(type: contentType, content: content, delegate: self)]
 
         details = [
-            DetailsTweakedNotice(originalTrackId: content.itemOriginalTrackid, originalSection: content.itemOriginalSection, delegate: self),
+            // DetailsTweakedNotice(originalTrackId: content.itemOriginalTrackid, originalSection: content.itemOriginalSection, delegate: self),
             DetailsScreenshots(type: contentType, screenshots: content.itemScreenshots, delegate: self),
             DetailsDescription(), // dynamic
-            DetailsChangelog(), // dynamic
-            DetailsRelated(type: contentType, related: content.itemRelatedContent, delegate: self),
-            DetailsInformation(type: contentType, content: content),
-            DetailsDownloadStats(content: content)
+            // DetailsChangelog(), // dynamic
+            // DetailsRelated(type: contentType, related: content.itemRelatedContent, delegate: self),
+            // DetailsInformation(type: contentType, content: content),
+            // DetailsDownloadStats(content: content)
+            // DetailsDownloadStats(content: content)
+            DetailsPublisher("© " + content.itemSeller)
         ]
 
         switch contentType {

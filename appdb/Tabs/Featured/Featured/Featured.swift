@@ -24,13 +24,19 @@ protocol ContentRedirection: AnyObject {
 class Featured: LoadingTableView, UIPopoverPresentationControllerDelegate {
 
     let cells: [FeaturedCell] = [
-        ItemCollection(id: .cydia, title: "Custom Apps".localized(), fullSeparator: true),
+        /*ItemCollection(id: .cydia, title: "Custom Apps".localized(), fullSeparator: true),
         Dummy(),
         ItemCollection(id: .iosNew, title: "New and Noteworthy".localized()),
         ItemCollection(id: .iosPaid, title: "Top Paid".localized()),
         ItemCollection(id: .iosPopular, title: "Popular This Week".localized(), fullSeparator: true),
         Dummy(),
-        ItemCollection(id: .books, title: "Top Books".localized(), fullSeparator: true),
+        ItemCollection(id: .books, title: "Top Books".localized(), fullSeparator: true),*/
+
+        ItemCollection(id: .official, title: "Official apps".localized(), fullSeparator: true),
+        Dummy(),
+        ItemCollection(id: .user, title: "User apps".localized()),
+        ItemCollection(id: .repo, title: "Repo apps".localized(), fullSeparator: true),
+
         Copyright()
     ]
 
@@ -260,7 +266,7 @@ extension Featured: ChangeCategory {
 // MARK: - Push Details controller
 extension Featured: ContentRedirection {
     func pushDetailsController(with content: Item) {
-        let detailsViewController = Details(content: content)
+        let detailsViewController = Details(type: content.itemType, trackid: content.itemId)
         if Global.isIpad {
             let nav = DismissableModalNavController(rootViewController: detailsViewController)
             nav.modalPresentationStyle = .formSheet

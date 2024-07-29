@@ -45,7 +45,7 @@ class DetailsHeader: DetailsCell {
     private var _heightBooks = round((132 ~~ 102) * 1.542) + Global.Size.margin.value
     override var height: CGFloat {
         switch type {
-        case .ios, .cydia: return _height
+        case .ios, .cydia, .official, .repo, .user: return _height
         case .books: return _heightBooks
         case .altstore: return _heightAltStore
         default: return 0
@@ -184,6 +184,42 @@ class DetailsHeader: DetailsCell {
             installButton!.theme_tintColor = Color.softGreen
             installButton!.addTarget(self, action: #selector(installTapped), for: .touchUpInside)
             installButton!.isEnabled = true
+        }
+        case .official: if let officialApp = content as? OfficialApp {
+            name.text = officialApp.itemName.decoded
+            seller = ButtonFactory.createChevronButton(text: officialApp.itemSeller.isEmpty ? "Unknown".localized() : officialApp.itemSeller, color: Color.darkGray, size: (15 ~~ 13), bold: false)
+            seller.addTarget(self, action: #selector(self.sellerTapped), for: .touchUpInside)
+            icon.layer.cornerRadius = Global.cornerRadius(from: (130 ~~ 100))
+
+            if let url = URL(string: officialApp.icon) {
+                icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
+            }
+
+            self.devId = officialApp.itemSeller
+        }
+        case .repo: if let repoApp = content as? RepoApp {
+            name.text = repoApp.itemName.decoded
+            seller = ButtonFactory.createChevronButton(text: repoApp.itemSeller.isEmpty ? "Unknown".localized() : repoApp.itemSeller, color: Color.darkGray, size: (15 ~~ 13), bold: false)
+            seller.addTarget(self, action: #selector(self.sellerTapped), for: .touchUpInside)
+            icon.layer.cornerRadius = Global.cornerRadius(from: (130 ~~ 100))
+
+            if let url = URL(string: repoApp.icon) {
+                icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
+            }
+
+            self.devId = repoApp.itemSeller
+        }
+        case .user: if let userApp = content as? UserApp {
+            name.text = userApp.itemName.decoded
+            seller = ButtonFactory.createChevronButton(text: userApp.itemSeller.isEmpty ? "Unknown".localized() : userApp.itemSeller, color: Color.darkGray, size: (15 ~~ 13), bold: false)
+            seller.addTarget(self, action: #selector(self.sellerTapped), for: .touchUpInside)
+            icon.layer.cornerRadius = Global.cornerRadius(from: (130 ~~ 100))
+
+            if let url = URL(string: userApp.icon) {
+                icon.af.setImage(withURL: url, placeholderImage: #imageLiteral(resourceName: "placeholderIcon"), filter: Global.roundedFilter(from: (130 ~~ 100)), imageTransition: .crossDissolve(0.2))
+            }
+
+            self.devId = userApp.itemSeller
         }
         default:
             break

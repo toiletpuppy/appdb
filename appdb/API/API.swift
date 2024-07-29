@@ -11,7 +11,7 @@ import SwiftyJSON
 import Localize_Swift
 
 enum API {
-    static let endpoint = "https://api.dbservices.to/v1.6/"
+    static let endpoint = "https://api.dbservices.to/v1.7/"
     static let statusEndpoint = "https://status.dbservices.to/API/v1.0/"
     static let itmsHelperEndpoint = "https://dbservices.to/manifest.php"
 
@@ -39,8 +39,12 @@ enum ItemType: String, Codable {
     case ios = "ios"
     case books = "books"
     case cydia = "cydia"
+    case official = "official_app"
+    case repo = "repo_app"
+    case user = "user_app"
     case myAppstore = "MyAppStore"
     case altstore = "altstore"
+    case __deprecated
 }
 
 enum Order: String, CaseIterable {
@@ -97,7 +101,8 @@ enum Price: String, CaseIterable {
 }
 
 enum Actions: String {
-    case search = "search"
+    case search = "search_index"
+    case universalGateway = "universal_gateway"
     case listGenres = "list_genres"
     case promotions = "promotions"
     case getLinks = "get_links"

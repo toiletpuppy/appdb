@@ -24,7 +24,7 @@ extension Banner: UICollectionViewDelegate, UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        banners.count * multiplier // simulate infinite scroll
+        banners.count// * multiplier // simulate infinite scroll
     }
 
     func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
@@ -58,7 +58,7 @@ class Banner: UIView {
     var collectionView: UICollectionView!
 
     var banners: [String] {
-        var banners = ["main_banner", "tweaked_apps_banner", "unc0ver_banner", "delta_banner"]
+        var banners = ["main_banner"/*, "tweaked_apps_banner", "unc0ver_banner", "delta_banner"*/]
         if Global.isRtl { banners = [banners.first!] + banners.dropFirst().reversed() }
         return banners
     }
@@ -115,7 +115,7 @@ class Banner: UIView {
     // Set up timer if needed
     open func setTimerIfNeeded() {
         if slideshowInterval > 0 && slideshowTimer == nil {
-            slideshowTimer = Timer.scheduledTimer(timeInterval: slideshowInterval, target: self, selector: #selector(self.slideshowTick(_:)), userInfo: nil, repeats: true)
+            // slideshowTimer = Timer.scheduledTimer(timeInterval: slideshowInterval, target: self, selector: #selector(self.slideshowTick(_:)), userInfo: nil, repeats: true)
         }
     }
 

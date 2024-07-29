@@ -31,11 +31,16 @@ extension Featured {
         case iosPaid = "ios_paid"
         case cydia = "cydia"
         case books = "books"
+
+        case official
+        case user
+        case repo
+
         case dummy = "dummy"
         case copyright = "copyright"
     }
 
-    static let iosTypes: [CellType] = [.iosNew, .iosPaid, .iosPopular, .cydia]
+    static let iosTypes: [CellType] = [.iosNew, .iosPaid, .iosPopular, .cydia, .official, .user, .repo]
 
     // Invalidate banner timer when view disappears
     override func viewWillDisappear(_ animated: Bool) {

@@ -12,8 +12,27 @@ import ObjectMapper
 
 extension API {
 
+    static func searchByUniversalIdentifier <T>(type: T.Type, universalIdentifier: String, success: @escaping (_ item: T) -> Void, fail: @escaping (_ error: String) -> Void) where T: Item {
+        let request = AF.request(endpoint + Actions.universalGateway.rawValue, parameters: ["universal_object_identifier": universalIdentifier, "lang": languageCode], headers: headers)
+
+        quickCheckForErrors(request, completion: { ok, hasError, _ in
+            if ok {
+                request.responseObject(keyPath: "data.object") { (response: AFDataResponse<T>) in
+                    switch response.result {
+                    case .success(let item):
+                        success(item)
+                    case .failure(let error):
+                        fail(error.localizedDescription)
+                    }
+                }
+            } else {
+                fail((hasError ?? "Cannot connect").localized())
+            }
+        })
+    }
+
     static func search <T>(type: T.Type, order: Order = .all, price: Price = .all, genre: String = "0", dev: String = "0", trackid: String = "0", q: String = "", page: Int = 1, success: @escaping (_ items: [T]) -> Void, fail: @escaping (_ error: String) -> Void) where T: Item {
-        let request = AF.request(endpoint + Actions.search.rawValue, parameters: ["type": T.type().rawValue, "order": order.rawValue, "price": price.rawValue, "genre": genre, "dev": dev, "trackid": trackid, "q": q, "start": 25 * (page - 1), "length": 25, "lang": languageCode], headers: headers)
+        let request = AF.request(endpoint + Actions.search.rawValue, parameters: ["type": T.type().rawValue, "developer_name": dev, "name": q, "start": 25 * (page - 1), "length": 25, "lang": languageCode], headers: headers)
 
         quickCheckForErrors(request, completion: { ok, hasError, _ in
             if ok {
