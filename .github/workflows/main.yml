@@ -9,7 +9,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4.2.2
         with:
           ref: api-1.7-update
           
@@ -55,7 +55,7 @@ jobs:
                      -exportPath "$PWD/build/ipa"
 
       - name: Upload IPA artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4.6.1
         with:
           name: unsigned-ipa
           path: build/ipa
