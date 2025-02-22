@@ -8,35 +8,12 @@ jobs:
     runs-on: macos-latest
 
     steps:
-      - name: Checkout repository
+      - name: Check out repository
         uses: actions/checkout@v4.2.2
         with:
-          ref: api-1.7-update  # Build from the 'api-1.7-update' branch
+          ref: api-1.7-update  # The branch you want to build from
 
-      - name: Create export options plist
-        run: |
-          cat > exportOptions.plist <<'EOF'
-          <?xml version="1.0" encoding="UTF-8"?>
-          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-          <plist version="1.0">
-          <dict>
-              <key>compileBitcode</key>
-              <false/>
-              <key>destination</key>
-              <string>export</string>
-              <key>method</key>
-              <string>development</string>
-              <key>signingStyle</key>
-              <string>manual</string>
-              <key>stripSwiftSymbols</key>
-              <true/>
-              <key>thinning</key>
-              <string>&lt;none&gt;</string>
-          </dict>
-          </plist>
-          EOF
-
-      - name: Clean and archive project
+      - name: Clean and archive project (unsigned)
         run: |
           mkdir -p build
           xcodebuild -project appdb.xcodeproj \
@@ -46,15 +23,20 @@ jobs:
                      -archivePath "$PWD/build/appdb.xcarchive" \
                      CODE_SIGNING_ALLOWED=NO
 
-      - name: Export unsigned IPA
+      - name: Create unsigned IPA manually
         run: |
-          xcodebuild -exportArchive \
-                     -archivePath "$PWD/build/appdb.xcarchive" \
-                     -exportOptionsPlist exportOptions.plist \
-                     -exportPath "$PWD/build/ipa"
+          # Go to the .xcarchive products directory where the .app is located
+          cd build/appdb.xcarchive/Products/Applications
+
+          # Zip up the .app folder into a .ipa
+          zip -r appdb.zip appdb.app
+          mv appdb.zip appdb.ipa
+
+          # Move the .ipa back into the build folder
+          mv appdb.ipa "$GITHUB_WORKSPACE/build/appdb.ipa"
 
       - name: Upload IPA artifact
         uses: actions/upload-artifact@v4.6.1
         with:
           name: unsigned-ipa
-          path: build/ipa
+          path: build/appdb.ipa
