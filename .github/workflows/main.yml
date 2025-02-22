@@ -9,8 +9,10 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.2.2
-          
+        uses: actions/checkout@v3
+        with:
+          ref: api-1.7-update
+
       - name: Create export options plist
         run: |
           cat > exportOptions.plist <<'EOF'
@@ -37,8 +39,8 @@ jobs:
       - name: Clean and archive project
         run: |
           mkdir -p build
-          # Archive the project with code signing disabled.
-          xcodebuild -workspace appdb.xcworkspace \
+          # Use the correct workspace file name 'project.xcworkspace'
+          xcodebuild -workspace project.xcworkspace \
                      -scheme appdb \
                      -configuration Release \
                      clean archive \
@@ -53,7 +55,7 @@ jobs:
                      -exportPath "$PWD/build/ipa"
 
       - name: Upload IPA artifact
-        uses: actions/upload-artifact@v4.6.1
+        uses: actions/upload-artifact@v3
         with:
           name: unsigned-ipa
           path: build/ipa
