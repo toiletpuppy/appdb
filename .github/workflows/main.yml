@@ -11,7 +11,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4.2.2
         with:
-          ref: api-1.7-update
+          ref: api-1.7-update  # Build from the 'api-1.7-update' branch
 
       - name: Create export options plist
         run: |
@@ -39,8 +39,7 @@ jobs:
       - name: Clean and archive project
         run: |
           mkdir -p build
-          # Use the correct workspace file name 'project.xcworkspace'
-          xcodebuild -workspace project.xcworkspace \
+          xcodebuild -project appdb.xcodeproj \
                      -scheme appdb \
                      -configuration Release \
                      clean archive \
