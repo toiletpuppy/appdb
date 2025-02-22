@@ -1,0 +1,61 @@
+name: Build Unsigned IPA
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          ref: api-1.7-update
+          
+      - name: Create export options plist
+        run: |
+          cat > exportOptions.plist <<'EOF'
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0">
+          <dict>
+              <key>compileBitcode</key>
+              <false/>
+              <key>destination</key>
+              <string>export</string>
+              <key>method</key>
+              <string>development</string>
+              <key>signingStyle</key>
+              <string>manual</string>
+              <key>stripSwiftSymbols</key>
+              <true/>
+              <key>thinning</key>
+              <string>&lt;none&gt;</string>
+          </dict>
+          </plist>
+          EOF
+
+      - name: Clean and archive project
+        run: |
+          mkdir -p build
+          # Archive the project with code signing disabled.
+          xcodebuild -workspace appdb.xcworkspace \
+                     -scheme appdb \
+                     -configuration Release \
+                     clean archive \
+                     -archivePath "$PWD/build/appdb.xcarchive" \
+                     CODE_SIGNING_ALLOWED=NO
+
+      - name: Export unsigned IPA
+        run: |
+          xcodebuild -exportArchive \
+                     -archivePath "$PWD/build/appdb.xcarchive" \
+                     -exportOptionsPlist exportOptions.plist \
+                     -exportPath "$PWD/build/ipa"
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: unsigned-ipa
+          path: build/ipa
